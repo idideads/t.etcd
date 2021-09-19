@@ -20,11 +20,11 @@ jobs:
         uses: docker/setup-buildx-action@v1
       -
         name: Docker pull and push aliyun
-        env:
-          aliyun_user: ${{ secrets.ALINAME }}
-          aliyun_pass: ${{ secrets.ALIPASS }}
+        # env:
+        #   aliyun_user: ${{ secrets.ALINAME }}
+        #   aliyun_pass: ${{ secrets.ALIPASS }}
         run: |
-          sudo docker login --username=${aliyun_user} registry.us-west-1.aliyuncs.com --password=${aliyun_pass}
+          sudo docker login --username=${{ secrets.ALINAME }} registry.us-west-1.aliyuncs.com --password=${{ secrets.ALIPASS }}
           sudo docker pull k8s.gcr.io/etcd:3.4.13-0
           sudo docker tag registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
           sudo docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
