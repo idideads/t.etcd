@@ -21,14 +21,14 @@ jobs:
         run: echo "The id was ${{ github.actor }}"
       - name: Print ENV
         run: echo "The name was ${{ secrets.ALINAME }}"
-      - name: Log in to Aliyun Registry
-        uses: docker/login-action@v1
-        with:
-          registry: registry.us-west-1.aliyuncs.com
-          username: ${{ secrets.ALINAME }}
-          password: ${{ secrets.ALIPASS }}
-      - name: Build container image
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: registry.us-west-1.aliyuncs.com/test_gg/lost:etcd
+      # - name: Log in to Aliyun Registry
+      #   uses: docker/login-action@v1
+      #   with:
+      #     registry: registry.us-west-1.aliyuncs.com
+      #     username: ${{ secrets.ALINAME }}
+      #     password: ${{ secrets.ALIPASS }}
+      # - name: Build container image
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     push: true
+      #     tags: registry.us-west-1.aliyuncs.com/test_gg/lost:etcd

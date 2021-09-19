@@ -22,7 +22,7 @@ jobs:
         name: Login to Aliyun Registry
         uses: docker/login-action@v1
         with:
-          registry: registry.us-west-1.aliyuncs.com/test_gg/lost
+          registry: registry.cn-shenzhen.aliyuncs.com
           username: ${{ secrets.ALINAME }}
           password: ${{ secrets.ALIPASS }}
       -
@@ -32,7 +32,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
+          tags: registry.cn-shenzhen.aliyuncs.com/test_gg/sz:3.4.13
       #- # run tests using image from docker hub
         # name: Run Tests
         # run: make tests
@@ -41,4 +41,4 @@ jobs:
         uses: akhilerm/tag-push-action@v1.0.0
         with:
           src: k8s.gcr.io/etcd:3.4.13-0
-          dst: registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
+          dst: registry.cn-shenzhen.aliyuncs.com/test_gg/sz:3.4.13
