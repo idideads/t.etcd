@@ -24,7 +24,7 @@ jobs:
         #   aliyun_user: ${{ secrets.ALINAME }}
         #   aliyun_pass: ${{ secrets.ALIPASS }}
         run: |
-          #sudo docker login --username=${{ secrets.ALINAME }} registry.us-west-1.aliyuncs.com --password=${{ secrets.ALIPASS }}
           sudo docker pull k8s.gcr.io/etcd:3.4.13-0
           sudo docker tag k8s.gcr.io/etcd:3.4.13-0 registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
-          #sudo docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
+          sudo docker login --username=${{ secrets.ALINAME }} registry.us-west-1.aliyuncs.com --password=${{ secrets.ALIPASS }}
+          sudo docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
