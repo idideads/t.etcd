@@ -1,0 +1,17 @@
+name: login test
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  loginaliyun:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Aliyun Registry
+        uses: docker/login-action@v1
+        with:
+          registry: registry.us-west-1.aliyuncs.com
+          username: ${{ secrets.ALINAME }}
+          password: ${{ secrets.ALIPASS }}
