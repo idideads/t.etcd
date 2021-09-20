@@ -25,5 +25,8 @@ jobs:
           username: "${{ secrets.ALINAME }}"
           password: "${{ secrets.ALIPASS }}"
 
+      - name: Docker login
+        run: sudo docker login -u ${{ secrets.ALINAME }} registry.cn-shenzhen.aliyuncs.com
+
       - name: Docker push
         run: sudo docker push registry.cn-shenzhen.aliyuncs.com/test_gg/sz:3.4.13
