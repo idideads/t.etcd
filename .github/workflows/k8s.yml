@@ -12,16 +12,16 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Docker pull
-        run: sudo docker pull k8s.gcr.io/etcd:3.4.13-0
+        run: docker pull k8s.gcr.io/etcd:3.4.13-0
       
       - name: Docker tag
         run: docker tag k8s.gcr.io/etcd:3.4.13-0 registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
 
       - name: Docker images
-        run: sudo docker images | grep registry
+        run: docker images | grep registry
 
       - name: Docker logout
-        run: sudo docker logout
+        run: docker logout
 
       - name: Look
         run: |
