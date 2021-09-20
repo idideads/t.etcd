@@ -6,26 +6,17 @@ on:
       - 'master'
 
 jobs:
-  docker:
+  pullimages:
     runs-on: ubuntu-latest
     steps:
-      - 
-        name: Checkout
-        uses: actions/checkout@v2
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      -
-        name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      -
-        name: Docker pull and push aliyun
-        # env:
-        #   aliyun_user: ${{ secrets.ALINAME }}
-        #   aliyun_pass: ${{ secrets.ALIPASS }}
+      - name: Login to ACR
+        uses: aliyun/acr-login@v1
+        with: 
+          login-server: https://registry.us-west-1.aliyuncs.com
+          username: "${{ secrets.ALINAME }}"
+          password: "${{ secrets.ALIPASS }}"
+      - name: Docker pull and push
         run: |
           sudo docker pull k8s.gcr.io/etcd:3.4.13-0
           sudo docker tag k8s.gcr.io/etcd:3.4.13-0 registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
-          #sudo docker login --username=${{ secrets.ALINAME }} registry.us-west-1.aliyuncs.com --password=${{ secrets.ALIPASS }}
-          #sudo docker login -u ${{ secrets.ALINAME }} -p ${{ secrets.ALIPASS }} registry.us-west-1.aliyuncs.com
-          #sudo docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
+          sudo docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
