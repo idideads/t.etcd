@@ -9,9 +9,9 @@ jobs:
   loginaliyun:
     runs-on: ubuntu-latest
     steps:
-      - name: Login to Aliyun Registry
-        uses: docker/login-action@v1
-        with:
-          registry: registry.us-west-1.aliyuncs.com
-          username: ${{ secrets.ALINAME }}
-          password: ${{ secrets.ALIPASS }}
+      - name: Login to ACR
+        uses: aliyun/acr-login@v1
+        with: 
+          login-server: https://registry.cn-hangzhou.aliyuncs.com
+          username: "${{ secrets.ALINAME }}"
+          password: "${{ secrets.ALIPASS }}"
