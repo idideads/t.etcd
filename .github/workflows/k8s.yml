@@ -35,8 +35,8 @@ jobs:
           #cp $DOCKER_CONFIG/config.json ~/.docker/
           sudo cat ~/.docker/config.json
 
-      # - name: Docker config
-      #   run: sudo docker --config `$DOCKER_CONFIG/config.json`
+      - name: Docker login
+        run: docker login -u ${{ secrets.ALINAME }} -p ${{ secrets.ALIPASS }} egistry.cn-shenzhen.aliyuncs.com/test_gg/sz
 
       - name: Docker push
         run: docker push registry.cn-shenzhen.aliyuncs.com/test_gg/sz:3.4.13
