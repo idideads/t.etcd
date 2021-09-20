@@ -13,10 +13,10 @@ jobs:
         run: sudo docker pull k8s.gcr.io/etcd:3.4.13-0
       
       - name: Docker tag
-        run: docker tag k8s.gcr.io/etcd:3.4.13-0 registry.cn-shenzhen.aliyuncs.com/test_gg/sz:3.4.13
+        run: docker tag k8s.gcr.io/etcd:3.4.13-0 registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
 
       - name: Docker images
-        run: sudo docker images
+        run: sudo docker images | grep registry
 
       - name: Docker logout
         run: sudo docker logout
