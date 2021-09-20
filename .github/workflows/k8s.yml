@@ -25,8 +25,11 @@ jobs:
 
       - name: Look
         run: |
-          ls -al /etc/docker
-          cat /etc/docker/daemon.json
+          #ls -al /etc/docker
+          #cat /etc/docker/daemon.json
+          cat `{ "cgroup-parent": "/actions_job","insecure-registries": ["registry.us-west-1.aliyuncs.com"] }` > /etc/docker/daemon.json
+          sudo systemctl daemon-reload
+          sudo systemctl restart docker
       
       - name: Login to ACR
         uses: aliyun/acr-login@v1
