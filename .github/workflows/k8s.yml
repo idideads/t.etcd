@@ -11,20 +11,20 @@ jobs:
     steps:
       # - uses: actions/checkout@v2
 
-      # - name: Docker login
-      #   uses: docker/login-action@v1
-      #   with:
-      #     registry: ${{ secrets.ALIREPO }}
-      #     username: ${{ secrets.ALUSERNAME }}
-      #     password: ${{ secrets.ALISECRET }}
-      
-      - name: Login to ACR
-        uses: aliyun/acr-login@v1
-        with: 
-          login-server: ${{ secrets.ALIREPO }}
-          # region-id: us-west-1
+      - name: Docker login
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ secrets.ALIREPO }}
           username: ${{ secrets.ALUSERNAME }}
           password: ${{ secrets.ALISECRET }}
+      
+      # - name: Login to ACR
+      #   uses: aliyun/acr-login@v1
+      #   with: 
+      #     login-server: ${{ secrets.ALIREPO }}
+      #     # region-id: us-west-1
+      #     username: ${{ secrets.ALUSERNAME }}
+      #     password: ${{ secrets.ALISECRET }}
 
       - name: Docker CMD
         run: |
