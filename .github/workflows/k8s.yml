@@ -28,13 +28,13 @@ jobs:
           ls -al /etc/docker
           cat /etc/docker/daemon.json
       
-      # - name: Login to ACR
-      #   uses: aliyun/acr-login@v1
-      #   with: 
-      #     login-server: registry.us-west-1.aliyuncs.com/test_gg/lost
-      #     region-id: us-west-1
-      #     username: "${{ secrets.ALINAME }}"
-      #     password: "${{ secrets.ALIPASS }}"
+      - name: Login to ACR
+        uses: aliyun/acr-login@v1
+        with: 
+          login-server: registry.us-west-1.aliyuncs.com
+          #region-id: us-west-1
+          username: "${{ secrets.ALINAME }}"
+          password: "${{ secrets.ALIPASS }}"
 
       # - name: ENV check
       #   run: |
@@ -42,8 +42,8 @@ jobs:
       #     #cp $DOCKER_CONFIG/config.json ~/.docker/
       #     sudo cat ~/.docker/config.json
 
-      - name: Docker login
-        run: docker login --username=${{ secrets.ALINAME }} --password=${{ secrets.ALIPASS }} registry.us-west-1.aliyuncs.com
+      # - name: Docker login
+      #   run: docker login --username=${{ secrets.ALINAME }} --password=${{ secrets.ALIPASS }} registry.us-west-1.aliyuncs.com
 
       - name: Docker push
         run: docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
