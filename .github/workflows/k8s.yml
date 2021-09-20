@@ -26,10 +26,9 @@ jobs:
       - name: Docker login
         uses: docker/login-action@v1
         with:
-          registry: registry.us-west-1.aliyuncs.com
+          registry: https://registry.us-west-1.aliyuncs.com
           username: "${{ secrets.ALINAME }}"
           password: "${{ secrets.ALIPASS }}"
-          repository: test_gg
       
       # - name: Login to ACR
       #   uses: aliyun/acr-login@v1
