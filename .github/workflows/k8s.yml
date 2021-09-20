@@ -24,7 +24,7 @@ jobs:
       - name: Login to ACR
         uses: aliyun/acr-login@v1
         with: 
-          login-server: registry.cn-shenzhen.aliyuncs.com/test_gg/sz
+          login-server: registry.us-west-1.aliyuncs.com/test_gg/lost
           region-id: cn-shenzhen
           username: "${{ secrets.ALINAME }}"
           password: "${{ secrets.ALIPASS }}"
@@ -35,8 +35,8 @@ jobs:
       #     #cp $DOCKER_CONFIG/config.json ~/.docker/
       #     sudo cat ~/.docker/config.json
 
-      - name: Docker login
-        run: sudo echo "${{ secrets.ALIPASS }}" | docker login -u ${{ secrets.ALINAME }} --password-stdin egistry.cn-shenzhen.aliyuncs.com/test_gg/sz
+      # - name: Docker login
+      #   run: sudo echo "${{ secrets.ALIPASS }}" | docker login -u ${{ secrets.ALINAME }} --password-stdin egistry.cn-shenzhen.aliyuncs.com/test_gg/sz
 
       - name: Docker push
-        run: docker push registry.cn-shenzhen.aliyuncs.com/test_gg/sz:3.4.13
+        run: docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
