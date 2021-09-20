@@ -24,7 +24,7 @@ jobs:
       - name: Login to ACR
         uses: aliyun/acr-login@v1
         with: 
-          login-server: https://registry.cn-shenzhen.aliyuncs.com/test_gg/sz
+          login-server: registry.cn-shenzhen.aliyuncs.com/test_gg/sz
           region-id: cn-shenzhen
           username: "${{ secrets.ALINAME }}"
           password: "${{ secrets.ALIPASS }}"
