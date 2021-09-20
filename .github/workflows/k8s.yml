@@ -29,7 +29,7 @@ jobs:
         run: |
           cat ~/.docker/config.json
           echo "/////////"
-          cat $DOCKER_CONFIG
+          ls -al $DOCKER_CONFIG
 
       - name: Docker config
         run: sudo docker --config `$DOCKER_CONFIG`
