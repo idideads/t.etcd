@@ -9,6 +9,8 @@ jobs:
   pullimages:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - name: Docker pull
         run: sudo docker pull k8s.gcr.io/etcd:3.4.13-0
       
@@ -21,13 +23,13 @@ jobs:
       - name: Docker logout
         run: sudo docker logout
       
-      - name: Login to ACR
-        uses: aliyun/acr-login@v1
-        with: 
-          login-server: registry.us-west-1.aliyuncs.com/test_gg/lost
-          region-id: cn-shenzhen
-          username: "${{ secrets.ALINAME }}"
-          password: "${{ secrets.ALIPASS }}"
+      # - name: Login to ACR
+      #   uses: aliyun/acr-login@v1
+      #   with: 
+      #     login-server: registry.us-west-1.aliyuncs.com/test_gg/lost
+      #     region-id: us-west-1
+      #     username: "${{ secrets.ALINAME }}"
+      #     password: "${{ secrets.ALIPASS }}"
 
       # - name: ENV check
       #   run: |
@@ -35,8 +37,8 @@ jobs:
       #     #cp $DOCKER_CONFIG/config.json ~/.docker/
       #     sudo cat ~/.docker/config.json
 
-      # - name: Docker login
-      #   run: sudo echo "${{ secrets.ALIPASS }}" | docker login -u ${{ secrets.ALINAME }} --password-stdin egistry.cn-shenzhen.aliyuncs.com/test_gg/sz
+      - name: Docker login
+        run: docker login --username=${{ secrets.ALINAME }} --password=${{ secrets.ALIPASS }} egistry.cn-shenzhen.aliyuncs.com
 
       - name: Docker push
         run: docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
