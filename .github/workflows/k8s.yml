@@ -14,9 +14,9 @@ jobs:
       # - name: Docker login
       #   uses: docker/login-action@v1
       #   with:
-      #     registry: https://registry.us-west-1.aliyuncs.com
-      #     username: "${{ secrets.ALINAME }}"
-      #     password: "${{ secrets.ALIPASS }}"
+      #     registry: ${{ secrets.ALIREPO }}
+      #     username: ${{ secrets.ALUSERNAME }}
+      #     password: ${{ secrets.ALISECRET }}
       
       - name: Login to ACR
         uses: aliyun/acr-login@v1
@@ -26,11 +26,8 @@ jobs:
           username: ${{ secrets.ALUSERNAME }}
           password: ${{ secrets.ALISECRET }}
 
-      # - name: Docker login
-      #   run: echo "${{ secrets.ALIPASS }}" | docker login registry.us-west-1.aliyuncs.com --username=${{ secrets.ALINAME }} --password-stdin
-
       - name: Docker CMD
         run: |
           docker pull k8s.gcr.io/etcd:3.4.13-0
-          docker tag k8s.gcr.io/etcd:3.4.13-0 registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
-          docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
+          docker tag k8s.gcr.io/etcd:3.4.13-0 ${{ secrets.ALIREPO }}/test_gg/lost:3.4.13
+          docker push ${{ secrets.ALIREPO }}/test_gg/lost:3.4.13
