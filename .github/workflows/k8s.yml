@@ -9,19 +9,7 @@ jobs:
   bulid:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Docker pull
-        run: docker pull k8s.gcr.io/etcd:3.4.13-0
-      
-      - name: Docker tag
-        run: docker tag k8s.gcr.io/etcd:3.4.13-0 registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
-
-      - name: Docker images
-        run: docker images | grep registry
-
-      # - name: Docker logout
-      #   run: docker logout
+      # - uses: actions/checkout@v2
 
       # - name: Docker login
       #   uses: docker/login-action@v1
@@ -34,12 +22,15 @@ jobs:
         uses: aliyun/acr-login@v1
         with: 
           login-server: ${{ secrets.ALIREPO }}
-          #region-id: us-west-1
+          # region-id: us-west-1
           username: ${{ secrets.ALUSERNAME }}
           password: ${{ secrets.ALISECRET }}
 
       # - name: Docker login
       #   run: echo "${{ secrets.ALIPASS }}" | docker login registry.us-west-1.aliyuncs.com --username=${{ secrets.ALINAME }} --password-stdin
 
-      - name: Docker push
-        run: docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
+      - name: Docker CMD
+        run: |
+          docker pull k8s.gcr.io/etcd:3.4.13-0
+          docker tag k8s.gcr.io/etcd:3.4.13-0 registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
+          docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
