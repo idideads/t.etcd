@@ -23,30 +23,24 @@ jobs:
       - name: Docker logout
         run: docker logout
 
-      - name: Look
-        run: |
-          ls -al /etc/docker
-          #sudo cat `{ "cgroup-parent": "/actions_job","insecure-registries": ["registry.us-west-1.aliyuncs.com"] }` > /etc/docker/daemon.json
-          cat /etc/docker/daemon.json
-          #sudo systemctl daemon-reload
-          #sudo systemctl restart docker
-      
-      - name: Login to ACR
-        uses: aliyun/acr-login@v1
-        with: 
-          login-server: registry.us-west-1.aliyuncs.com
-          #region-id: us-west-1
+      - name: Docker login
+        uses: docker/login-action@v1
+        with:
+          registry: registry.us-west-1.aliyuncs.com
           username: "${{ secrets.ALINAME }}"
           password: "${{ secrets.ALIPASS }}"
-
-      # - name: ENV check
-      #   run: |
-      #     sudo ls -al ~/.docker/config.json $DOCKER_CONFIG
-      #     #cp $DOCKER_CONFIG/config.json ~/.docker/
-      #     sudo cat ~/.docker/config.json
+          repository: test_gg
+      
+      # - name: Login to ACR
+      #   uses: aliyun/acr-login@v1
+      #   with: 
+      #     login-server: registry.us-west-1.aliyuncs.com
+      #     #region-id: us-west-1
+      #     username: "${{ secrets.ALINAME }}"
+      #     password: "${{ secrets.ALIPASS }}"
 
       # - name: Docker login
       #   run: docker login --username=${{ secrets.ALINAME }} --password=${{ secrets.ALIPASS }} registry.us-west-1.aliyuncs.com
 
-      - name: Docker push
-        run: docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
+      # - name: Docker push
+      #   run: docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
