@@ -25,6 +25,9 @@ jobs:
           username: "${{ secrets.ALINAME }}"
           password: "${{ secrets.ALIPASS }}"
 
+      - name: cat
+        run: cat ~/.docker/config.json
+
       - name: Docker login
         run: sudo docker login -u ${{ secrets.ALINAME }} registry.cn-shenzhen.aliyuncs.com
 
