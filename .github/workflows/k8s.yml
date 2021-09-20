@@ -6,7 +6,7 @@ on:
       - 'master'
 
 jobs:
-  pullimages:
+  bulid:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -38,7 +38,7 @@ jobs:
       #     sudo cat ~/.docker/config.json
 
       - name: Docker login
-        run: docker login --username=${{ secrets.ALINAME }} --password=${{ secrets.ALIPASS }} egistry.cn-shenzhen.aliyuncs.com
+        run: docker login --username=${{ secrets.ALINAME }} --password=${{ secrets.ALIPASS }} registry.us-west-1.aliyuncs.com
 
       - name: Docker push
         run: docker push registry.us-west-1.aliyuncs.com/test_gg/lost:3.4.13
