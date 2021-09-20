@@ -29,14 +29,14 @@ jobs:
           username: "${{ secrets.ALINAME }}"
           password: "${{ secrets.ALIPASS }}"
 
-      - name: ENV check
-        run: |
-          sudo ls -al ~/.docker/config.json $DOCKER_CONFIG
-          #cp $DOCKER_CONFIG/config.json ~/.docker/
-          sudo cat ~/.docker/config.json
+      # - name: ENV check
+      #   run: |
+      #     sudo ls -al ~/.docker/config.json $DOCKER_CONFIG
+      #     #cp $DOCKER_CONFIG/config.json ~/.docker/
+      #     sudo cat ~/.docker/config.json
 
       - name: Docker login
-        run: docker login -u ${{ secrets.ALINAME }} -p ${{ secrets.ALIPASS }} egistry.cn-shenzhen.aliyuncs.com/test_gg/sz
+        run: sudo echo "${{ secrets.ALIPASS }}" | docker login -u ${{ secrets.ALINAME }} --password-stdin egistry.cn-shenzhen.aliyuncs.com/test_gg/sz
 
       - name: Docker push
         run: docker push registry.cn-shenzhen.aliyuncs.com/test_gg/sz:3.4.13
