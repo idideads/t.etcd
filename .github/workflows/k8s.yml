@@ -28,10 +28,11 @@ jobs:
       - name: ENV check
         run: |
           cat ~/.docker/config.json
-          echo $DOCKER_CONFIG
+          echo "/////////"
+          cat $DOCKER_CONFIG
 
       - name: Docker config
-        run: sudo docker --config $DOCKER_CONFIG
+        run: sudo docker --config `$DOCKER_CONFIG`
 
       - name: Docker push
         run: sudo docker push registry.cn-shenzhen.aliyuncs.com/test_gg/sz:3.4.13
