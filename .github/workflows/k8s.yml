@@ -30,10 +30,8 @@ jobs:
 
       - name: ENV check
         run: |
-          cat ~/.docker/config.json
+          ls -al ~/.docker/config.json $DOCKER_CONFIG
           echo "/////////"
-          ls -al $DOCKER_CONFIG
-          cat `$DOCKER_CONFIG/config.json`
 
       # - name: Docker config
       #   run: sudo docker --config `$DOCKER_CONFIG/config.json`
